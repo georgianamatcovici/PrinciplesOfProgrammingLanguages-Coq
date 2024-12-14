@@ -1,0 +1,25 @@
+Check S 3.
+Fixpoint plus (k m : nat) : nat :=
+match k with 
+|0 => m
+|S n => S (plus n m)
+end.
+
+Eval compute in (plus 0 0).
+Eval compute in (plus (S (S 0)) (S(S 0))).
+
+Lemma plus_O_m_is_m :
+forall m, plus O m = m.
+Proof.
+(* first, we move m from the quantifier
+in the goal to a context of current
+assumptions using the 'intro' tactic *)
+intros m.
+(* the current goal is now provable
+using the definition of plus: we
+apply the 'simpl' tactic for that*)
+simpl.
+(* the current goal is just reflexivity *)
+reflexivity.
+(* Qed checks if the proof is correct *)
+Qed.
